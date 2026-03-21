@@ -1,6 +1,10 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h1>{{ page.title }}</h1>
-<div>{{ page.content | safe }}</div>
+<div class="px-16 py-12 max-w-2xl">
+  <h1 class="text-white text-lg font-bold mb-6">{{ page.title }}</h1>
+  <div class="prose prose-invert text-sm text-[#cccccc] leading-relaxed">
+    {{ page.content | safe }}
+  </div>
+</div>
 {% endblock %}

@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="flex items-center justify-center min-h-screen px-16 py-20">
+  <div class="max-w-xl">
+    <p class="text-[#cccccc] text-sm leading-relaxed mb-4">
+      {{ section.extra.bio }}
+      <span class="bg-[#e8a838] text-[#1a1a1a] px-1 font-semibold">{{ config.extra.alias }}</span>
+      {{ section.extra.alias_note }}
+    </p>
+    <p class="text-[#cccccc] text-sm leading-relaxed">
+      {{ section.extra.interests }}
+    </p>
+  </div>
+</div>
+{% endblock %}

@@ -1,14 +1,17 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h1>{{ section.title }}</h1>
-
-<ul>
-  {% for page in section.pages %}
+<div class="px-16 py-12">
+  <h1 class="text-white text-lg font-bold mb-6">{{ section.title }}</h1>
+  <ul class="flex flex-col gap-2 text-sm">
+    {% for page in section.pages %}
     <li>
-      <a href="{{ page.permalink }}">{{ page.title }}</a>
+      <a href="{{ page.permalink }}" class="text-[#cccccc] hover:text-[#e8a838] transition-colors">
+        {{ page.title }}
+      </a>
     </li>
-  {% endfor %}
-</ul>
-
+    {% endfor %}
+  </ul>
+  {{ section.content | safe }}
+</div>
 {% endblock %}

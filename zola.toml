@@ -1,16 +1,14 @@
-# The URL the site will be built for
 base_url = "https://rukshan.se.com"
-
-# Whether to automatically compile all Sass files in the sass directory
-compile_sass = true
-
-# Whether to build a search index to be used later on by a JavaScript library
-build_search_index = true
+title = "Rukshan Ranasinghe"
+compile_sass = false
+build_search_index = false
 
 [markdown]
-
 [markdown.highlighting]
 theme = "catppuccin-mocha"
 
 [extra]
-# Put all your custom variables here
+name = "Rukshan Ranasinghe"
+alias = "Rukshan Ranasinghe"
+email = "mailto:navodrukshan2000@gmail.com"
+github = "https://github.com/RukshanRanasinghe2000"
