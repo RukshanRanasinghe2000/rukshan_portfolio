@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>{{ config.title }}</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/htmx.org@2.0.4/dist/htmx.min.js"></script>
   <script>
     tailwind.config = {
       theme: {
@@ -29,16 +30,22 @@
   <style>
     body { font-family: 'JetBrains Mono', monospace; font-size: 16px; }
     .nav-active { color: #e8a838; }
-    /* Scale up Tailwind's text-xs and text-sm site-wide */
     .text-xs { font-size: 0.85rem !important; line-height: 1.5rem !important; }
     .text-sm { font-size: 1rem !important; line-height: 1.65rem !important; }
+    /* HTMX loading indicator */
+    #main-content.htmx-request { opacity: 0.4; transition: opacity 0.2s; }
   </style>
 </head>
 <body class="bg-[#1a1a1a] text-[#cccccc] min-h-screen flex">
 
   <!-- Sidebar -->
   <aside class="fixed top-0 left-0 h-full w-64 border-r border-[#333333] flex flex-col px-8 py-10 z-10">
-    <a href="/" class="text-[#e8a838] font-bold text-2xl mb-10 tracking-tight hover:opacity-80 transition-opacity">
+    <a href="/"
+       hx-get="/partials/home"
+       hx-target="#main-content"
+       hx-push-url="/"
+       hx-on::after-request="setActive('home')"
+       class="text-[#e8a838] font-bold text-2xl mb-10 tracking-tight hover:opacity-80 transition-opacity cursor-pointer">
       {{ config.extra.alias }}
     </a>
 
@@ -51,21 +58,88 @@
         <svg class="w-4 h-4 text-[#888888]" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
         GitHub ↗
       </a>
+      <a href="{{ config.extra.youtube }}" target="_blank" rel="noopener" class="flex items-center gap-2 hover:text-[#e8a838] transition-colors">
+        <svg class="w-4 h-4 text-[#888888]" fill="currentColor" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+        YouTube ↗
+      </a>
     </div>
 
-    <!-- Nav links -->
-    <nav class="flex flex-col gap-2 text-sm mt-10">
-      <a href="/projects" class="hover:text-[#e8a838] transition-colors {% if current_path is defined and current_path == '/projects/' %}nav-active{% endif %}">/ Projects</a>
-      <a href="/blog" class="hover:text-[#e8a838] transition-colors {% if current_path is defined and current_path == '/blog/' %}nav-active{% endif %}">/ Blog</a>
-      <a href="/config" class="hover:text-[#e8a838] transition-colors {% if current_path is defined and current_path == '/config/' %}nav-active{% endif %}">/ Config</a>
-      <a href="/" class="hover:text-[#e8a838] transition-colors {% if current_path is defined and current_path == '/' %}nav-active{% endif %}">/ Home</a>
+    <!-- Nav links — HTMX powered -->
+    <nav id="sidebar-nav" class="flex flex-col gap-2 text-sm mt-10">
+      <a data-nav="projects"
+         hx-get="/partials/projects"
+         hx-target="#main-content"
+         hx-push-url="/projects/"
+         hx-on::after-request="setActive('projects')"
+         class="nav-link hover:text-[#e8a838] transition-colors cursor-pointer">/ Projects</a>
+
+      <a data-nav="blog"
+         hx-get="/partials/blog"
+         hx-target="#main-content"
+         hx-push-url="/blog/"
+         hx-on::after-request="setActive('blog')"
+         class="nav-link hover:text-[#e8a838] transition-colors cursor-pointer">/ Blog</a>
+
+      <a data-nav="config"
+         hx-get="/partials/config"
+         hx-target="#main-content"
+         hx-push-url="/config/"
+         hx-on::after-request="setActive('config')"
+         class="nav-link hover:text-[#e8a838] transition-colors cursor-pointer">/ Config</a>
+
+      <a data-nav="home"
+         hx-get="/partials/home"
+         hx-target="#main-content"
+         hx-push-url="/"
+         hx-on::after-request="setActive('home')"
+         class="nav-link hover:text-[#e8a838] transition-colors cursor-pointer">/ Home</a>
     </nav>
   </aside>
 
-  <!-- Main content -->
-  <main class="ml-64 flex-1 min-h-screen">
+  <!-- Main content — HTMX swap target -->
+  <main id="main-content" class="ml-64 flex-1 min-h-screen transition-opacity duration-200">
     {% block content %}{% endblock %}
   </main>
+
+  <script>
+    // Set active nav item
+    function setActive(name) {
+      document.querySelectorAll('.nav-link').forEach(el => el.classList.remove('nav-active'));
+      const active = document.querySelector(`[data-nav="${name}"]`);
+      if (active) active.classList.add('nav-active');
+    }
+
+    // Set active on initial load based on current path
+    (function() {
+      const path = window.location.pathname;
+      if (path.startsWith('/projects')) setActive('projects');
+      else if (path.startsWith('/blog')) setActive('blog');
+      else if (path.startsWith('/config')) setActive('config');
+      else setActive('home');
+    })();
+
+    // Handle browser back/forward
+    window.addEventListener('popstate', () => {
+      const path = window.location.pathname;
+      let partial = 'home';
+      if (path.startsWith('/projects')) partial = 'projects';
+      else if (path.startsWith('/blog')) partial = 'blog';
+      else if (path.startsWith('/config')) partial = 'config';
+
+      htmx.ajax('GET', `/partials/${partial}`, { target: '#main-content', swap: 'innerHTML' });
+      setActive(partial);
+    });
+
+    // Re-run scripts injected by HTMX swaps
+    document.addEventListener('htmx:afterSwap', () => {
+      const scripts = document.querySelectorAll('#main-content script');
+      scripts.forEach(old => {
+        const s = document.createElement('script');
+        s.textContent = old.textContent;
+        old.replaceWith(s);
+      });
+    });
+  </script>
 
 </body>
 </html>
