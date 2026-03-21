@@ -1,0 +1,25 @@
+# Zola build output
+/public/
+
+# Sass cache (if used)
+/.sass-cache/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Temporary files
+*.tmp
+
+# IDE / Editor folders
+.vscode/
+.idea/
+
+# Node (if you later add tooling)
+node_modules/
+
+# Environment variables
+.env
