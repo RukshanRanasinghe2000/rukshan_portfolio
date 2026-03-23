@@ -5,7 +5,7 @@ on:
     branches: [main]
 
   schedule:
-    - cron: "* * * * *"
+    - cron: "0 0 * * *"
 
   workflow_dispatch:
 
@@ -16,17 +16,18 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Install Rust
-        uses: actions-rs/toolchain@v1
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
         with:
-          toolchain: stable
+          node-version: 20
 
-      - name: Run Rust Fetcher
+      - name: Run Fetcher
         env:
-          GITHUB_TOKEN_API: ${{ secrets.GIT_TOKEN_API }}
+          GITHUB_TOKEN: ${{ secrets.GIT_TOKEN_API }}
         run: |
-          cd rss-fetcher
-          cargo run
+          cd fetcher
+          npm install
+          npm run fetch
 
       - name: Install Zola
         run: |
