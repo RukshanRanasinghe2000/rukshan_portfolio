@@ -23,7 +23,7 @@ jobs:
 
       - name: Run Rust Fetcher
         env:
-          GITHUB_TOKEN_API: ${{ secrets.GITHUB_TOKEN_API }}
+          GITHUB_TOKEN_API: ${{ secrets.GIT_TOKEN_API }}
         run: |
           cd rss-fetcher
           cargo run
@@ -39,5 +39,5 @@ jobs:
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+          github_token: ${{ secrets.GIT_TOKEN_API }}
           publish_dir: ./public
