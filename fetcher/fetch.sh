@@ -21,6 +21,6 @@ if echo "$RESPONSE" | jq -e '.errors' > /dev/null 2>&1; then
   exit 1
 fi
 
-OUT="${GITHUB_WORKSPACE:-$(pwd)}/static/repos.json"
+OUT="${GITHUB_WORKSPACE:-$(pwd)}/data/projects.json"
 echo "$RESPONSE" | jq '.data.user.pinnedItems.nodes // []' > "$OUT"
-echo "Wrote $(jq length "$OUT") pinned repos to static/repos.json"
+echo "Wrote $(jq length "$OUT") pinned data to static/projects.json"
