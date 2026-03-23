@@ -19,7 +19,9 @@ jobs:
       - name: Run Fetcher
         env:
           GH_TOKEN: ${{ secrets.GIT_TOKEN_API }}
-        run: bash fetcher/fetch.sh
+        run: |
+          echo "Token length: ${#GH_TOKEN}"
+          bash fetcher/fetch.sh
 
       - name: Install Zola
         run: |
