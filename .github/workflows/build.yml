@@ -16,18 +16,10 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20
-
       - name: Run Fetcher
         env:
           GITHUB_TOKEN: ${{ secrets.GIT_TOKEN_API }}
-        run: |
-          cd fetcher
-          npm install
-          npm run fetch
+        run: bash fetcher/fetch.sh
 
       - name: Install Zola
         run: |
