@@ -21,10 +21,10 @@ if echo "$RESPONSE" | jq -e '.errors' > /dev/null 2>&1; then
   exit 1
 fi
 
-OUT="${GITHUB_WORKSPACE}/static/repos.json"
+OUT="${GITHUB_WORKSPACE}/data/projects.json"
 mkdir -p "$(dirname "$OUT")"
 echo "$RESPONSE" | jq '.data.user.pinnedItems.nodes // []' > "$OUT"
 
 echo "Saved file:"
 cat "$OUT"
-echo "Count: $(jq length "$OUT")"
+echo "Count: $(jq length "$OUT") pinned repos to data/projects.json"

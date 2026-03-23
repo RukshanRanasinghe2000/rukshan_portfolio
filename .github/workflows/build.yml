@@ -26,8 +26,8 @@ jobs:
           GH_TOKEN: ${{ secrets.GIT_TOKEN_API }}
         run: bash fetcher/fetch.sh
 
-      - name: Check static folder
-        run: ls -la static/
+      - name: Check data folder
+        run: ls -la data/ && cat data/projects.json
 
       - name: Install Zola
         run: |
