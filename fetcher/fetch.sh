@@ -15,12 +15,16 @@ RESPONSE=$(curl -s -X POST https://api.github.com/graphql \
 
 echo "API Response: $RESPONSE"
 
-# Check for errors in response
 if echo "$RESPONSE" | jq -e '.errors' > /dev/null 2>&1; then
-  echo "GraphQL errors: $(echo "$RESPONSE" | jq '.errors')"
+  echo "GraphQL errors:"
+  echo "$RESPONSE" | jq '.errors'
   exit 1
 fi
 
-OUT="${GITHUB_WORKSPACE:-$(pwd)}/data/projects.json"
+OUT="${GITHUB_WORKSPACE}/static/repos.json"
+mkdir -p "$(dirname "$OUT")"
 echo "$RESPONSE" | jq '.data.user.pinnedItems.nodes // []' > "$OUT"
-echo "Wrote $(jq length "$OUT") pinned data to static/projects.json"
+
+echo "Saved file:"
+cat "$OUT"
+echo "Count: $(jq length "$OUT")"
