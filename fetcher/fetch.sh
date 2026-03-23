@@ -1,8 +1,8 @@
 #!/bin/bash
 set -e
 
-if [ -z "${GITHUB_TOKEN}" ]; then
-  echo "Error: GITHUB_TOKEN is not set."
+if [ -z "${GH_TOKEN}" ]; then
+  echo "Error: GH_TOKEN is not set."
   exit 1
 fi
 
@@ -10,7 +10,7 @@ QUERY='{"query":"{ user(login: \"RukshanRanasinghe2000\") { pinnedItems(first: 6
 
 mkdir -p data
 RESPONSE=$(curl -s -X POST https://api.github.com/graphql \
-  -H "Authorization: Bearer ${GITHUB_TOKEN}" \
+  -H "Authorization: Bearer ${GH_TOKEN}" \
   -H "Content-Type: application/json" \
   -d "$QUERY")
 

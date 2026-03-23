@@ -18,7 +18,7 @@ jobs:
 
       - name: Run Fetcher
         env:
-          GITHUB_TOKEN: ${{ secrets.GIT_TOKEN_API }}
+          GH_TOKEN: ${{ secrets.GIT_TOKEN_API }}
         run: bash fetcher/fetch.sh
 
       - name: Install Zola
