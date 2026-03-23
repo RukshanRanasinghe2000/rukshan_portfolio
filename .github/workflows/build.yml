@@ -1,0 +1,43 @@
+name: Build and Deploy Zola Site
+
+on:
+  push:
+    branches: [main]
+
+  schedule:
+    - cron: "* * * * *"
+
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Rust
+        uses: actions-rs/toolchain@v1
+        with:
+          toolchain: stable
+
+      - name: Run Rust Fetcher
+        env:
+          GITHUB_TOKEN_API: ${{ secrets.GITHUB_TOKEN_API }}
+        run: |
+          cd rss-fetcher
+          cargo run
+
+      - name: Install Zola
+        run: |
+          wget https://github.com/getzola/zola/releases/download/v0.17.2/zola-v0.17.2-x86_64-unknown-linux-gnu.tar.gz
+          tar -xvf zola*.tar.gz
+
+      - name: Build Site
+        run: ./zola build
+
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./public
