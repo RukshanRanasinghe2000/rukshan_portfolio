@@ -1,62 +1,60 @@
 {% extends "partial.html" %}
 {% block content %}
+
+{% set repos = load_data(path="data/projects.json") %}
+
 <div class="px-10 py-12">
-  <div id="loading" class="text-[#888888] text-sm">Loading projects...</div>
-  <div id="error" class="hidden text-[#888888] text-sm">Failed to load projects.</div>
-  <div id="projects-grid" class="hidden grid grid-cols-1 md:grid-cols-2 gap-px bg-[#333333]"></div>
-</div>
-<script>
-  const GITHUB_USERNAME = 'RukshanRanasinghe2000';
+  {% if repos | length == 0 %}
+    <div class="text-[#888888] text-sm">No projects found.</div>
+  {% else %}
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-px bg-[#333333]">
 
-  async function loadRepos() {
-    const loading = document.getElementById('loading');
-    const error = document.getElementById('error');
-    const grid = document.getElementById('projects-grid');
+      {% for repo in repos %}
+      <div class="bg-[#1a1a1a] p-6 flex flex-col gap-3">
 
-    try {
-      const res = await fetch(`https://api.github.com/users/${GITHUB_USERNAME}/repos?per_page=100&sort=updated`);
-      if (!res.ok) throw new Error();
-      const repos = await res.json();
+        <div class="flex items-start justify-between gap-2">
+          <h2 class="text-white text-xs font-bold uppercase tracking-widest leading-tight">
+            {{ repo.name }}
+          </h2>
 
-      const filtered = repos
-        .filter(r => !r.fork || r.description)
-        .sort((a, b) => (b.stargazers_count - a.stargazers_count) || new Date(b.updated_at) - new Date(a.updated_at));
+          <div class="flex items-center gap-2 shrink-0">
+            {% if repo.isFork %}
+              <span class="text-[#555555] text-xs border border-[#333333] px-1">fork</span>
+            {% endif %}
 
-      loading.classList.add('hidden');
-
-      grid.innerHTML = filtered.map(repo => `
-        <div class="bg-[#1a1a1a] p-6 flex flex-col gap-3">
-          <div class="flex items-start justify-between gap-2">
-            <h2 class="text-white text-xs font-bold uppercase tracking-widest leading-tight">${escapeHtml(repo.name)}</h2>
-            <div class="flex items-center gap-2 shrink-0">
-              ${repo.fork ? '<span class="text-[#555555] text-xs border border-[#333333] px-1">fork</span>' : ''}
-              ${repo.stargazers_count > 0 ? `<span class="text-[#888888] text-xs">★ ${repo.stargazers_count}</span>` : ''}
-            </div>
-          </div>
-          <p class="text-[#888888] text-xs leading-relaxed flex-1">
-            ${repo.description ? escapeHtml(repo.description) : '<span class="text-[#555555]">No description</span>'}
-          </p>
-          ${repo.language ? `<p class="text-[#666666] text-xs">Language: <span class="text-[#888888]">${escapeHtml(repo.language)}</span></p>` : ''}
-          <div>
-            <a href="${repo.html_url}" target="_blank" rel="noopener"
-               class="inline-block border border-[#444444] text-[#cccccc] text-xs px-3 py-1 hover:border-[#e8a838] hover:text-[#e8a838] transition-colors">
-              Source Code
-            </a>
+            {% if repo.stargazerCount > 0 %}
+              <span class="text-[#888888] text-xs">★ {{ repo.stargazerCount }}</span>
+            {% endif %}
           </div>
         </div>
-      `).join('');
 
-      grid.classList.remove('hidden');
-    } catch (e) {
-      document.getElementById('loading').classList.add('hidden');
-      document.getElementById('error').classList.remove('hidden');
-    }
-  }
+        <p class="text-[#888888] text-xs leading-relaxed flex-1">
+          {% if repo.description %}
+            {{ repo.description }}
+          {% else %}
+            <span class="text-[#555555]">No description</span>
+          {% endif %}
+        </p>
 
-  function escapeHtml(str) {
-    return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
-  }
+        {% if repo.primaryLanguage %}
+        <p class="text-[#666666] text-xs">
+          Language:
+          <span class="text-[#888888]">{{ repo.primaryLanguage.name }}</span>
+        </p>
+        {% endif %}
 
-  loadRepos();
-</script>
+        <div>
+          <a href="{{ repo.url }}" target="_blank" rel="noopener"
+             class="inline-block border border-[#444444] text-[#cccccc] text-xs px-3 py-1 hover:border-[#e8a838] hover:text-[#e8a838] transition-colors">
+            Source Code
+          </a>
+        </div>
+
+      </div>
+      {% endfor %}
+
+    </div>
+  {% endif %}
+</div>
+
 {% endblock %}
