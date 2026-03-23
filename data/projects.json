@@ -1,1 +1,62 @@
-[]
+[
+  {
+    "name": "web-lens",
+    "description": "WebLens is a lightweight browser extension that analyzes real-world web page performance directly in your browser using native Web Performance APIs. ",
+    "stargazerCount": 1,
+    "url": "https://github.com/RukshanRanasinghe2000/web-lens",
+    "isFork": false,
+    "primaryLanguage": {
+      "name": "JavaScript"
+    }
+  },
+  {
+    "name": "Blazelint",
+    "description": "Rust based linter implementation for Ballerina Lang (For Research)",
+    "stargazerCount": 0,
+    "url": "https://github.com/RuztyCrabs/Blazelint",
+    "isFork": false,
+    "primaryLanguage": {
+      "name": "Rust"
+    }
+  },
+  {
+    "name": "gpa_cal",
+    "description": "Mobile application for calculate GPA",
+    "stargazerCount": 4,
+    "url": "https://github.com/RukshanRanasinghe2000/gpa_cal",
+    "isFork": false,
+    "primaryLanguage": {
+      "name": "Dart"
+    }
+  },
+  {
+    "name": "debate-draw-app",
+    "description": "This project for bulid a draw system for the Vitharka Debate competition. version 2 and electron based project  ",
+    "stargazerCount": 0,
+    "url": "https://github.com/Vitharaka-Debate-App/debate-draw-app",
+    "isFork": false,
+    "primaryLanguage": {
+      "name": "JavaScript"
+    }
+  },
+  {
+    "name": "PhoneBook",
+    "description": "This program for save person details in a data base. ",
+    "stargazerCount": 2,
+    "url": "https://github.com/RukshanRanasinghe2000/PhoneBook",
+    "isFork": false,
+    "primaryLanguage": {
+      "name": "Java"
+    }
+  },
+  {
+    "name": "aqi-classifier",
+    "description": "This project is a web-based machine learning application that classifies air quality based on various pollutant concentrations using a trained Random Forest model.",
+    "stargazerCount": 3,
+    "url": "https://github.com/RukshanRanasinghe2000/aqi-classifier",
+    "isFork": false,
+    "primaryLanguage": {
+      "name": "Jupyter Notebook"
+    }
+  }
+]
