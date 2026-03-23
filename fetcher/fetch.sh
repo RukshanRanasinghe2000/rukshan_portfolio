@@ -7,6 +7,6 @@ curl -s -X POST https://api.github.com/graphql \
   -H "Authorization: Bearer ${GITHUB_TOKEN}" \
   -H "Content-Type: application/json" \
   -d "$QUERY" \
-  | jq '.data.user.pinnedItems.nodes' > static/repos.json
+  | jq '.data.user.pinnedItems.nodes' > "${GITHUB_WORKSPACE:-$(pwd)}/static/repos.json"
 
-echo "Wrote $(jq length static/repos.json) pinned repos to static/repos.json"
+echo "Wrote $(jq length "${GITHUB_WORKSPACE:-$(pwd)}/static/repos.json") pinned repos to static/repos.json"

@@ -27,7 +27,7 @@ jobs:
           tar -xvf zola*.tar.gz
 
       - name: Build Site
-        run: ./zola build
+        run: ./zola --root ${{ github.workspace }} build
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
