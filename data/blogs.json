@@ -1,1 +1,54 @@
-[]
+[
+  {
+    "title": "Serverless APIs with Choreo",
+    "link": "https://medium.com/@rukshanranasinghe2000/serverless-apis-with-choreo-b620ad78ac63?source=rss-b2ecf1a05518------2",
+    "pubDate": "Sat, 28 Feb 2026 05:18:22 GMT",
+    "description": "",
+    "thumbnail": "https://cdn-images-1.medium.com/max/1024/1*iNfYw6VuugB47qM5sy6ZtQ.png",
+    "categories": [
+      "serverless",
+      "api-development",
+      "cloud-computing"
+    ]
+  },
+  {
+    "title": "Basic Mathematical Process of ML Model Training",
+    "link": "https://medium.com/@rukshanranasinghe2000/basic-mathematical-process-of-ml-model-training-80c671d28551?source=rss-b2ecf1a05518------2",
+    "pubDate": "Thu, 05 Feb 2026 20:56:34 GMT",
+    "description": "",
+    "thumbnail": "https://cdn-images-1.medium.com/max/1024/1*3HVR9GVMuQmdMXn6CM87gw.png",
+    "categories": [
+      "mls",
+      "machine-learning",
+      "what-is-machine-learning"
+    ]
+  },
+  {
+    "title": "Activation Functions in Neural Networks",
+    "link": "https://medium.com/@rukshanranasinghe2000/activation-functions-in-neural-networks-542ce44ea082?source=rss-b2ecf1a05518------2",
+    "pubDate": "Sun, 08 Jun 2025 15:50:09 GMT",
+    "description": "",
+    "thumbnail": "https://cdn-images-1.medium.com/max/1024/1*CZhaj89rrlqO-N6WrP6tvQ.png",
+    "categories": [
+      "neural-networks",
+      "ai",
+      "activation-functions"
+    ]
+  },
+  {
+    "title": "Simply about Blockchain",
+    "link": "https://medium.com/@rukshanranasinghe2000/simply-about-blockchain-110fc6e0bea9?source=rss-b2ecf1a05518------2",
+    "pubDate": "Sun, 19 Jan 2025 17:18:48 GMT",
+    "description": "",
+    "thumbnail": "https://cdn-images-1.medium.com/max/1024/1*UO3yOxC9LoC5aTRhe0edUQ.png",
+    "categories": []
+  },
+  {
+    "title": "Asynchronous Programming in Dart",
+    "link": "https://medium.com/@rukshanranasinghe2000/overview-d1524373a9dc?source=rss-b2ecf1a05518------2",
+    "pubDate": "Fri, 13 Dec 2024 12:59:59 GMT",
+    "description": "",
+    "thumbnail": "https://cdn-images-1.medium.com/max/1024/1*txQbHp9GtDUtP5sXiZb6zw.png",
+    "categories": []
+  }
+]
