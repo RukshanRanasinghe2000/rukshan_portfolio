@@ -5,7 +5,7 @@ on:
     branches: [main]
 
   schedule:
-    - cron: "0 */6 * * *"
+    - cron: "* * * * *"
 
   workflow_dispatch:
 
@@ -29,12 +29,12 @@ jobs:
       - name: Check data folder
         run: ls -la data/ && cat data/projects.json
 
-      - name: Commit updated projects.json
+      - name: Commit updated data files
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add data/projects.json
-          git diff --cached --quiet || git commit -m "chore: update projects.json [skip ci]"
+          git add data/projects.json data/blogs.json
+          git diff --cached --quiet || git commit -m "chore: update projects and blogs data [skip ci]"
           git push
 
       - name: Install Zola
