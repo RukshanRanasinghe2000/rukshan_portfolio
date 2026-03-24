@@ -38,7 +38,8 @@ RSS=$(curl -s "$MEDIUM_FEED")
 
 python3 - <<EOF > "$BLOGS_OUT"
 import xml.etree.ElementTree as ET
-import json, re, sys
+import json, re
+from email.utils import parsedate_to_datetime
 
 rss = """${RSS//\"/\\\"}"""
 root = ET.fromstring(rss)
@@ -48,7 +49,7 @@ items = []
 for item in channel.findall('item'):
     title = item.findtext('title', '').strip()
     link = item.findtext('link', '').strip()
-    pub_date = item.findtext('pubDate', '').strip()
+    pub_date_raw = item.findtext('pubDate', '').strip()
     description = item.findtext('description', '').strip()
     content = item.findtext('{http://purl.org/rss/1.0/modules/content/}encoded', '').strip()
 
@@ -59,8 +60,12 @@ for item in channel.findall('item'):
     if src_match:
         thumbnail = src_match.group(1)
 
-    # strip html from description
     clean_desc = re.sub(r'<[^>]+>', '', description).strip()[:200]
+
+    try:
+        pub_date = parsedate_to_datetime(pub_date_raw).strftime('%b %d, %Y')
+    except Exception:
+        pub_date = pub_date_raw
 
     items.append({
         'title': title,
