@@ -3,7 +3,8 @@ title = "Home"
 template = "index.html"
 
 [extra]
-bio = "Hello, My name is Rukshan. I'm a computer person, open source lover, writer, pc builds enthusiast, gamer and a keyboard nerd."
+bio_before = "I'm "
+bio_after = ", a programmer who enjoys turning ideas into real projects. I'm always open to learning something new. Currently, I'm exploring Machine Learning and Neural Networks and looking forward to building smarter solutions."
 alias_note = "is the alias I use for online presence (dev work)."
-interests = "I'm interested in systems programming, web dev and ai."
+interests = "I work across web, mobile, desktop, IoT and AI"
 +++

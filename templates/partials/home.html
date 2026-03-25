@@ -2,10 +2,8 @@
 {% block content %}
 <div class="flex items-center justify-center min-h-screen px-16 py-20">
   <div class="max-w-xl">
-    <p class="text-[#cccccc] text-sm leading-relaxed mb-4 text-justify">
-      {{ page.extra.bio }}
-      <span class="bg-[#e8a838] text-[#1a1a1a] px-1 font-semibold">{{ config.extra.alias }}</span>
-      {{ page.extra.alias_note }}
+   <p class="text-[#cccccc] text-sm leading-relaxed mb-4">
+      {{ page.extra.bio_before | default(value="") }}<span class="bg-[#e8a838] text-[#1a1a1a] px-1 font-semibold">{{ config.extra.name }}</span>{{ page.extra.bio_after | default(value="") }}
     </p>
     <p class="text-[#cccccc] text-sm leading-relaxed">
       {{ page.extra.interests }}
