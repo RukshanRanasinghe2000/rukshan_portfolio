@@ -40,10 +40,10 @@
 
   <!-- Sidebar -->
   <aside class="fixed top-0 left-0 h-full w-64 border-r border-[#333333] flex flex-col px-8 py-10 z-10">
-    <a href="/"
-       hx-get="/partials/home"
+    <a href="https://rukshanranasinghe2000.github.io/rukshan_portfolio"
+       hx-get="https://rukshanranasinghe2000.github.io/rukshan_portfolio/partials/home"
        hx-target="#main-content"
-       hx-push-url="/"
+       hx-push-url="https://rukshanranasinghe2000.github.io/rukshan_portfolio"
        hx-on::after-request="setActive('home')"
        class="text-[#e8a838] font-bold text-2xl mb-10 tracking-tight hover:opacity-80 transition-opacity cursor-pointer">
       Rukshan Ranasinghe
@@ -68,27 +68,27 @@
     <!-- Nav links — HTMX powered -->
     <nav id="sidebar-nav" class="flex flex-col gap-2 text-sm mt-10">
       <a data-nav="projects"
-         hx-get="/partials/projects"
+         hx-get="https://rukshanranasinghe2000.github.io/rukshan_portfolio/partials/projects"
          hx-target="#main-content"
-         hx-push-url="/projects/"
+         hx-push-url="https://rukshanranasinghe2000.github.io/rukshan_portfolio/projects"
          hx-on::after-request="setActive('projects')"
          class="nav-link hover:text-[#e8a838] transition-colors cursor-pointer">
         <span class="nav-prefix">/ </span><span class="nav-label">Projects</span>
       </a>
 
       <a data-nav="blog"
-         hx-get="/partials/blog"
+         hx-get="https://rukshanranasinghe2000.github.io/rukshan_portfolio/partials/blog"
          hx-target="#main-content"
-         hx-push-url="/blog/"
+         hx-push-url="https://rukshanranasinghe2000.github.io/rukshan_portfolio/blog"
          hx-on::after-request="setActive('blog')"
          class="nav-link hover:text-[#e8a838] transition-colors cursor-pointer">
         <span class="nav-prefix">/ </span><span class="nav-label">Blog</span>
       </a>
 
       <a data-nav="home"
-         hx-get="/partials/home"
+         hx-get="https://rukshanranasinghe2000.github.io/rukshan_portfolio/partials/home"
          hx-target="#main-content"
-         hx-push-url="/"
+         hx-push-url="https://rukshanranasinghe2000.github.io/rukshan_portfolio"
          hx-on::after-request="setActive('home')"
          class="nav-link hover:text-[#e8a838] transition-colors cursor-pointer">
         <span class="nav-prefix">/ </span><span class="nav-label">Home</span>
@@ -359,14 +359,17 @@
       }
     }
 
+    const BASE = 'https:&#x2F;&#x2F;rukshanranasinghe2000.github.io&#x2F;rukshan_portfolio&#x2F;';
+    const BASE_PATH = new URL(BASE).pathname.replace(/\/$/, '');
+
     // Set active on initial load based on current path
     (function() {
       const path = window.location.pathname;
-      if (path.startsWith('/projects')) setActive('projects');
-      else if (path.startsWith('/blog')) setActive('blog');
+      if (path.startsWith(BASE_PATH + '/projects')) setActive('projects');
+      else if (path.startsWith(BASE_PATH + '/blog')) setActive('blog');
       else {
         setActive('home');
-        htmx.ajax('GET', '/partials/home', { target: '#main-content', swap: 'innerHTML' });
+        htmx.ajax('GET', BASE_PATH + '/partials/home/', { target: '#main-content', swap: 'innerHTML' });
       }
     })();
 
@@ -374,10 +377,10 @@
     window.addEventListener('popstate', () => {
       const path = window.location.pathname;
       let partial = 'home';
-      if (path.startsWith('/projects')) partial = 'projects';
-      else if (path.startsWith('/blog')) partial = 'blog';
+      if (path.startsWith(BASE_PATH + '/projects')) partial = 'projects';
+      else if (path.startsWith(BASE_PATH + '/blog')) partial = 'blog';
 
-      htmx.ajax('GET', `/partials/${partial}`, { target: '#main-content', swap: 'innerHTML' });
+      htmx.ajax('GET', BASE_PATH + `/partials/${partial}/`, { target: '#main-content', swap: 'innerHTML' });
       setActive(partial);
     });
 
