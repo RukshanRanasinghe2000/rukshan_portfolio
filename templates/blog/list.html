@@ -3,7 +3,7 @@
 
 {% set items = load_data(path="data/blogs.json") %}
 
-<div class="px-10 py-12">
+<div class="px-4 md:px-10 py-12">
   {% if items | length == 0 %}
     <div class="text-[#888888] text-sm">No articles found.</div>
   {% else %}
