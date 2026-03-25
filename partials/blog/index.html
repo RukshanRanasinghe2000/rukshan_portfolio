@@ -1,71 +1,169 @@
 
 
+
+
+
 <div class="px-10 py-12">
-  <div id="loading" class="text-[#888888] text-sm">Loading articles...</div>
-  <div id="error" class="hidden text-[#888888] text-sm">Failed to load articles.</div>
-  <div id="articles-grid" class="hidden grid grid-cols-1 md:grid-cols-2 gap-4"></div>
-</div>
-<script>
-  const MEDIUM_FEED = 'https://medium.com/feed/@rukshanranasinghe2000';
-  const RSS2JSON = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(MEDIUM_FEED)}`;
+  
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      
+      <a href="https:&#x2F;&#x2F;medium.com&#x2F;@rukshanranasinghe2000&#x2F;serverless-apis-with-choreo-b620ad78ac63?source=rss-b2ecf1a05518------2" target="_blank" rel="noopener"
+         class="group flex flex-col border border-[#333333] hover:border-[#e8a838] transition-colors bg-[#1a1a1a]">
 
-  async function loadArticles() {
-    const loading = document.getElementById('loading');
-    const error = document.getElementById('error');
-    const grid = document.getElementById('articles-grid');
+        
+          <div class="w-full h-44 overflow-hidden bg-[#222222]">
+            <img src="https:&#x2F;&#x2F;cdn-images-1.medium.com&#x2F;max&#x2F;1024&#x2F;1*iNfYw6VuugB47qM5sy6ZtQ.png" alt=""
+                 class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity" />
+          </div>
+        
 
-    try {
-      const res = await fetch(RSS2JSON);
-      if (!res.ok) throw new Error();
-      const data = await res.json();
-      if (data.status !== 'ok') throw new Error();
+        <div class="flex flex-col gap-2 p-4 flex-1">
+          <div class="flex items-start justify-between gap-3">
+            <h2 class="text-white text-xs font-bold uppercase tracking-wide leading-snug group-hover:text-[#e8a838] transition-colors">
+              Serverless APIs with Choreo
+            </h2>
+            <span class="text-[#555555] text-xs shrink-0">Feb 28, 2026</span>
+          </div>
 
-      loading.classList.add('hidden');
+          
 
-      grid.innerHTML = data.items.map(item => {
-        const date = new Date(item.pubDate).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
-        const tags = (item.categories || []).slice(0, 3);
-        let thumbnail = item.thumbnail || '';
-        if (!thumbnail && item.content) {
-          const match = item.content.match(/<img[^>]+src="([^"]+)"/);
-          if (match) thumbnail = match[1];
-        }
-        return `
-          <a href="${item.link}" target="_blank" rel="noopener"
-             class="group flex flex-col border border-[#333333] hover:border-[#e8a838] transition-colors bg-[#1a1a1a]">
-            ${thumbnail
-              ? `<div class="w-full h-44 overflow-hidden bg-[#222222]"><img src="${thumbnail}" alt="" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity" /></div>`
-              : '<div class="w-full h-44 bg-[#222222]"></div>'}
-            <div class="flex flex-col gap-2 p-4 flex-1">
-              <div class="flex items-start justify-between gap-3">
-                <h2 class="text-white text-xs font-bold uppercase tracking-wide leading-snug group-hover:text-[#e8a838] transition-colors">
-                  ${escapeHtml(item.title)}
-                </h2>
-                <span class="text-[#555555] text-xs shrink-0">${date}</span>
-              </div>
-              ${item.description ? `<p class="text-[#888888] text-xs leading-relaxed line-clamp-3">${stripHtml(item.description).slice(0, 160)}...</p>` : ''}
-              ${tags.length ? `<div class="flex flex-wrap gap-2 mt-auto pt-2">${tags.map(t => `<span class="text-[#666666] text-xs border border-[#333333] px-2 py-0.5">${escapeHtml(t)}</span>`).join('')}</div>` : ''}
+          
+            <div class="flex flex-wrap gap-2 mt-auto pt-2">
+              
+                <span class="text-[#666666] text-xs border border-[#333333] px-2 py-0.5">serverless</span>
+              
+                <span class="text-[#666666] text-xs border border-[#333333] px-2 py-0.5">api-development</span>
+              
+                <span class="text-[#666666] text-xs border border-[#333333] px-2 py-0.5">cloud-computing</span>
+              
             </div>
-          </a>`;
-      }).join('');
+          
+        </div>
 
-      grid.classList.remove('hidden');
-    } catch (e) {
-      document.getElementById('loading').classList.add('hidden');
-      document.getElementById('error').classList.remove('hidden');
-    }
-  }
+      </a>
+      
+      <a href="https:&#x2F;&#x2F;medium.com&#x2F;@rukshanranasinghe2000&#x2F;basic-mathematical-process-of-ml-model-training-80c671d28551?source=rss-b2ecf1a05518------2" target="_blank" rel="noopener"
+         class="group flex flex-col border border-[#333333] hover:border-[#e8a838] transition-colors bg-[#1a1a1a]">
 
-  function escapeHtml(str) {
-    return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
-  }
+        
+          <div class="w-full h-44 overflow-hidden bg-[#222222]">
+            <img src="https:&#x2F;&#x2F;cdn-images-1.medium.com&#x2F;max&#x2F;1024&#x2F;1*3HVR9GVMuQmdMXn6CM87gw.png" alt=""
+                 class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity" />
+          </div>
+        
 
-  function stripHtml(html) {
-    const tmp = document.createElement('div');
-    tmp.innerHTML = html;
-    return tmp.textContent || tmp.innerText || '';
-  }
+        <div class="flex flex-col gap-2 p-4 flex-1">
+          <div class="flex items-start justify-between gap-3">
+            <h2 class="text-white text-xs font-bold uppercase tracking-wide leading-snug group-hover:text-[#e8a838] transition-colors">
+              Basic Mathematical Process of ML Model Training
+            </h2>
+            <span class="text-[#555555] text-xs shrink-0">Feb 05, 2026</span>
+          </div>
 
-  loadArticles();
-</script>
+          
+
+          
+            <div class="flex flex-wrap gap-2 mt-auto pt-2">
+              
+                <span class="text-[#666666] text-xs border border-[#333333] px-2 py-0.5">mls</span>
+              
+                <span class="text-[#666666] text-xs border border-[#333333] px-2 py-0.5">machine-learning</span>
+              
+                <span class="text-[#666666] text-xs border border-[#333333] px-2 py-0.5">what-is-machine-learning</span>
+              
+            </div>
+          
+        </div>
+
+      </a>
+      
+      <a href="https:&#x2F;&#x2F;medium.com&#x2F;@rukshanranasinghe2000&#x2F;activation-functions-in-neural-networks-542ce44ea082?source=rss-b2ecf1a05518------2" target="_blank" rel="noopener"
+         class="group flex flex-col border border-[#333333] hover:border-[#e8a838] transition-colors bg-[#1a1a1a]">
+
+        
+          <div class="w-full h-44 overflow-hidden bg-[#222222]">
+            <img src="https:&#x2F;&#x2F;cdn-images-1.medium.com&#x2F;max&#x2F;1024&#x2F;1*CZhaj89rrlqO-N6WrP6tvQ.png" alt=""
+                 class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity" />
+          </div>
+        
+
+        <div class="flex flex-col gap-2 p-4 flex-1">
+          <div class="flex items-start justify-between gap-3">
+            <h2 class="text-white text-xs font-bold uppercase tracking-wide leading-snug group-hover:text-[#e8a838] transition-colors">
+              Activation Functions in Neural Networks
+            </h2>
+            <span class="text-[#555555] text-xs shrink-0">Jun 08, 2025</span>
+          </div>
+
+          
+
+          
+            <div class="flex flex-wrap gap-2 mt-auto pt-2">
+              
+                <span class="text-[#666666] text-xs border border-[#333333] px-2 py-0.5">neural-networks</span>
+              
+                <span class="text-[#666666] text-xs border border-[#333333] px-2 py-0.5">ai</span>
+              
+                <span class="text-[#666666] text-xs border border-[#333333] px-2 py-0.5">activation-functions</span>
+              
+            </div>
+          
+        </div>
+
+      </a>
+      
+      <a href="https:&#x2F;&#x2F;medium.com&#x2F;@rukshanranasinghe2000&#x2F;simply-about-blockchain-110fc6e0bea9?source=rss-b2ecf1a05518------2" target="_blank" rel="noopener"
+         class="group flex flex-col border border-[#333333] hover:border-[#e8a838] transition-colors bg-[#1a1a1a]">
+
+        
+          <div class="w-full h-44 overflow-hidden bg-[#222222]">
+            <img src="https:&#x2F;&#x2F;cdn-images-1.medium.com&#x2F;max&#x2F;1024&#x2F;1*UO3yOxC9LoC5aTRhe0edUQ.png" alt=""
+                 class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity" />
+          </div>
+        
+
+        <div class="flex flex-col gap-2 p-4 flex-1">
+          <div class="flex items-start justify-between gap-3">
+            <h2 class="text-white text-xs font-bold uppercase tracking-wide leading-snug group-hover:text-[#e8a838] transition-colors">
+              Simply about Blockchain
+            </h2>
+            <span class="text-[#555555] text-xs shrink-0">Jan 19, 2025</span>
+          </div>
+
+          
+
+          
+        </div>
+
+      </a>
+      
+      <a href="https:&#x2F;&#x2F;medium.com&#x2F;@rukshanranasinghe2000&#x2F;overview-d1524373a9dc?source=rss-b2ecf1a05518------2" target="_blank" rel="noopener"
+         class="group flex flex-col border border-[#333333] hover:border-[#e8a838] transition-colors bg-[#1a1a1a]">
+
+        
+          <div class="w-full h-44 overflow-hidden bg-[#222222]">
+            <img src="https:&#x2F;&#x2F;cdn-images-1.medium.com&#x2F;max&#x2F;1024&#x2F;1*txQbHp9GtDUtP5sXiZb6zw.png" alt=""
+                 class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity" />
+          </div>
+        
+
+        <div class="flex flex-col gap-2 p-4 flex-1">
+          <div class="flex items-start justify-between gap-3">
+            <h2 class="text-white text-xs font-bold uppercase tracking-wide leading-snug group-hover:text-[#e8a838] transition-colors">
+              Asynchronous Programming in Dart
+            </h2>
+            <span class="text-[#555555] text-xs shrink-0">Dec 13, 2024</span>
+          </div>
+
+          
+
+          
+        </div>
+
+      </a>
+      
+    </div>
+  
+</div>
+
 
