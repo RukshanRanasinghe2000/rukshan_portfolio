@@ -50,7 +50,7 @@
     </a>
 
     <!-- Social links — hidden on home page -->
-    <div id="sidebar-social" class="flex flex-col gap-3 mb-12 text-sm text-[#cccccc]" style="display:none">
+    <div id="sidebar-social" class="flex flex-col gap-3 mb-12 text-sm text-[#cccccc] overflow-hidden transition-all duration-500 ease-in-out" style="max-height:0;opacity:0">
       <a href="mailto:navodrukshan2000@gmail.com" class="flex items-center gap-2 hover:text-[#e8a838] transition-colors">
         <svg class="w-4 h-4 text-[#888888]" fill="currentColor" viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"/></svg>
         Email ↗
@@ -115,9 +115,15 @@
       const active = document.querySelector(`[data-nav="${name}"]`);
       if (active) active.classList.add('nav-active');
       const social = document.getElementById('sidebar-social');
-      console.log(name);
-      
-      if (social) social.style.display = name === 'home' ? 'none' : 'flex';
+      if (social) {
+        if (name === 'home') {
+          social.style.maxHeight = '0';
+          social.style.opacity = '0';
+        } else {
+          social.style.maxHeight = '200px';
+          social.style.opacity = '1';
+        }
+      }
     }
 
     // Set active on initial load based on current path
