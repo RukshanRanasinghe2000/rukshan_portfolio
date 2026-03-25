@@ -1,4 +1,4 @@
 User-agent: *
 Disallow:
 Allow: /
-Sitemap: https://rukshan.se.com/sitemap.xml
+Sitemap: https://rukshanranasinghe2000.github.io/rukshan_portfolio/sitemap.xml
