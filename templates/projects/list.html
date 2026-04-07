@@ -3,6 +3,8 @@
 {% block content %}
 
 {% set repos = load_data(path="data/projects.json") %}
+{% set manual_repos = load_data(path="data/manual_projects.json") %}
+{% set repos = repos | concat(with=manual_repos) %}
 
 <div class="px-4 md:px-10 py-12">
 
