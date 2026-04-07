@@ -1,5 +1,15 @@
 [
   {
+    "name": "DriftAgent-AFM-based",
+    "description": "An AI-powered agent that automatically detects drift between your API implementation and OpenAPI specification on every pull request, posting a review comment with any mismatches found.",
+    "stargazerCount": 0,
+    "url": "https://github.com/RukshanRanasinghe2000/DriftAgent-AFM-based",
+    "isFork": false,
+    "primaryLanguage": {
+      "name": "JavaScript"
+    }
+  },
+  {
     "name": "web-lens",
     "description": "WebLens is a lightweight browser extension that analyzes real-world web page performance directly in your browser using native Web Performance APIs. ",
     "stargazerCount": 1,
