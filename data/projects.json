@@ -50,13 +50,13 @@
     }
   },
   {
-    "name": "DriftAgent-AFM-based",
-    "description": null,
-    "stargazerCount": 0,
-    "url": "https://github.com/RukshanRanasinghe2000/DriftAgent-AFM-based",
-    "isFork": false,
+    "name": "Blazelint",
+    "description": "WIP linter for Ballerina Lang",
+    "stargazerCount": 2,
+    "url": "https://github.com/RukshanRanasinghe2000/Blazelint",
+    "isFork": true,
     "primaryLanguage": {
-      "name": "JavaScript"
+      "name": "Rust"
     }
   }
 ]
