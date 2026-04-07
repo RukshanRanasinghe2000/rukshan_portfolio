@@ -10,16 +10,6 @@
     }
   },
   {
-    "name": "Blazelint",
-    "description": "Rust based linter implementation for Ballerina Lang (For Research)",
-    "stargazerCount": 0,
-    "url": "https://github.com/RuztyCrabs/Blazelint",
-    "isFork": false,
-    "primaryLanguage": {
-      "name": "Rust"
-    }
-  },
-  {
     "name": "gpa_cal",
     "description": "Mobile application for calculate GPA",
     "stargazerCount": 4,
@@ -57,6 +47,16 @@
     "isFork": false,
     "primaryLanguage": {
       "name": "Jupyter Notebook"
+    }
+  },
+  {
+    "name": "DriftAgent-AFM-based",
+    "description": null,
+    "stargazerCount": 0,
+    "url": "https://github.com/RukshanRanasinghe2000/DriftAgent-AFM-based",
+    "isFork": false,
+    "primaryLanguage": {
+      "name": "JavaScript"
     }
   }
 ]
