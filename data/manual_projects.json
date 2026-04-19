@@ -8,5 +8,15 @@
     "primaryLanguage": {
       "name": "JavaScript"
     }
+  },
+  {
+    "name": "CodePulse",
+    "description": "A VS Code extension that detects performance issues in your code using AI — powered by Groq's LLM API. Issues appear as inline diagnostics in the editor and Problems panel, just like ESLint.",
+    "stargazerCount": 0,
+    "url": "https://github.com/RukshanRanasinghe2000/CodePluse",
+    "isFork": false,
+    "primaryLanguage": {
+      "name": "JavaScript"
+    }
   }
 ]
