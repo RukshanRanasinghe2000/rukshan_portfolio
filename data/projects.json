@@ -2,7 +2,7 @@
   {
     "name": "AgentFactory",
     "description": "AgentFactory is a no-code/low-code platform for building AI agents using a structured Markdown specification format. Instead of writing code or wrestling with YAML configs, you fill in a visual form and get a clean, portable agent spec file that any compatible runtime can execute.",
-    "stargazerCount": 0,
+    "stargazerCount": 2,
     "url": "https://github.com/RukshanRanasinghe2000/AgentFactory",
     "isFork": false,
     "primaryLanguage": {
