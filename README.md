@@ -8,11 +8,40 @@ The site is a single-page layout with a fixed sidebar and an HTMX-powered conten
 
 Data is fetched before the build runs. A shell script calls the GitHub GraphQL API to get pinned repos and the Medium RSS feed to get blog posts. Both are saved as JSON files that Zola reads during the build using `load_data`.
 
+Projects are loaded from two sources:
+- `data/projects.json` — auto-fetched from GitHub via the fetcher script
+- `data/manual_projects.json` — manually curated projects added directly
+
+Both files are merged at build time in the templates.
+
+## Activity Diagram
+
+```mermaid
+flowchart TD
+    A(["GitHub Actions Trigger"]) --> B["Run fetcher/fetch.sh"]
+    B --> C["GitHub GraphQL API - pinned repos"]
+    B --> D["Medium RSS Feed - blog posts"]
+    C --> E["data/projects.json"]
+    D --> F["data/blogs.json"]
+    E --> G["Commit updated data files to main"]
+    F --> G
+    G --> H["Zola Build"]
+    H --> I["load_data: projects.json"]
+    H --> J["load_data: manual_projects.json"]
+    H --> K["load_data: blogs.json"]
+    I --> L["Merge project lists"]
+    J --> L
+    L --> M["Render templates to static HTML"]
+    K --> M
+    M --> N["Deploy public to release branch"]
+    N --> O(["GitHub Pages serves the site"])
+```
+
 ## Stack
 
 - Zola — static site generator
 - HTMX — partial page swaps without JavaScript frameworks
-- Tailwind CSS — styling via CDN (build-time replacement planned)
+- Tailwind CSS — styling via CDN
 - GitHub Actions — automated build and deploy pipeline
 
 ## Local development
@@ -32,6 +61,25 @@ zola serve
 
 The site will be available at `http://127.0.0.1:1111`.
 
+## Adding projects manually
+
+Add entries to `data/manual_projects.json` following this structure:
+
+```json
+{
+  "name": "project-name",
+  "description": "Short description of the project.",
+  "stargazerCount": 0,
+  "url": "https://github.com/username/project-name",
+  "isFork": false,
+  "primaryLanguage": {
+    "name": "JavaScript"
+  }
+}
+```
+
+These are merged with the auto-fetched projects at build time — no template changes needed.
+
 ## Deployment
 
 Pushing to `main` triggers a GitHub Actions workflow that:
@@ -43,7 +91,7 @@ Pushing to `main` triggers a GitHub Actions workflow that:
 
 GitHub Pages serves the site from the `release` branch.
 
-The workflow also runs on a daily schedule to keep the data fresh without needing a manual push.
+The workflow also runs on a schedule every 3 days to keep the data fresh without needing a manual push.
 
 ## Environment
 
