@@ -20,6 +20,16 @@
     }
   },
   {
+    "name": "AgentFactory-CLI",
+    "description": "A command-line tool for validating AgentFactory .md agent spec files.  It ensures agent definitions are production-ready by detecting structural issues, misspelled keys, missing sections, and insecure credential patterns before deployment.",
+    "stargazerCount": 0,
+    "url": "https://github.com/RukshanRanasinghe2000/AgentFactory-CLI",
+    "isFork": false,
+    "primaryLanguage": {
+      "name": "Go"
+    }
+  },
+  {
     "name": "gpa_cal",
     "description": "Mobile application for calculate GPA",
     "stargazerCount": 4,
@@ -37,16 +47,6 @@
     "isFork": false,
     "primaryLanguage": {
       "name": "Java"
-    }
-  },
-  {
-    "name": "aqi-classifier",
-    "description": "This project is a web-based machine learning application that classifies air quality based on various pollutant concentrations using a trained Random Forest model.",
-    "stargazerCount": 3,
-    "url": "https://github.com/RukshanRanasinghe2000/aqi-classifier",
-    "isFork": false,
-    "primaryLanguage": {
-      "name": "Jupyter Notebook"
     }
   },
   {
